@@ -6,8 +6,6 @@ var ALPHABET = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 
 var Word = require("./Word.js");
 
-//selectedWord = "jenniferl";
-
 // creating and storing a new classroom object
 var firstWord = new Word("Jenniferl");
 /*
@@ -34,13 +32,10 @@ inquirer.prompt([
 
 
 // calling the addStudent method on our firstClass object
-firstWord.addLetter(ALPHABET[4], ALPHABET[3], false, '-');
-firstWord.isCorrect(ALPHABET[4]);
 
-//var warrior = new Letter("a", "a", true, "-");
+firstWord.guess(ALPHABET[4]);
 
 
 console.log(firstWord);
 
-console.log("==========End of Index.js ================");
-console.log();
+

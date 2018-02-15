@@ -1,47 +1,52 @@
 // requiring Letter module exported from student.js
 var Letter = require("./Letter.js");
 
-//selectedWord = "jenniferl";
-
 // constructor function for creating Word objects
 var Word = function(selectedWord) {
-  // this.students will hold all of our student objects
-  this.Letters = [];
-  
-  this.selectedWord=selectedWord;
-  console.log("My selectedWord  " + this.selectedWord);
-  this.points = 15;
-  
-  // a method that creates a Word using Letter constructor.
-  
-  this.addLetter = function(userGuess, underlying, checked, dashes) {
-    this.Letters.push(new Letter(userGuess, underlying, checked, dashes));
-    
-  };
+  // this.newWord will hold all of our letters objects
 
-  console.log("My userGuess  " +   " How to console.log letter guessed?");
-  console.log("==========End of Word constructor ================");
+  this.selectedWord=selectedWord;
+
+  this.newWord = [];
+
+  var splitWord = selectedWord.split('');
+  console.log("");
+  console.log("My splitWord  " + splitWord);
+  console.log("");
+
+  for (var i = 0; i < splitWord.length; ++i)
+  {
+    var newL = new Letter(splitWord[i]);
+    this.newWord.push(newL);
+  }
+
+  console.log("My selectedWord  " + this.selectedWord);
+  
+  
   console.log();
   
-  this.isCorrect = function(userGuess) {
-    if (this.Letters.userGuess===this.Letters.underlying) {
-      console.log("My userGuess " + this.userGuess)
-      console.log("CORRECT!");
-      this.checked = true;
-      this.points --; 
-        console.log("You have " + this.points + " points remaining.");
-    }
-    else {
-        console.log("WRONG");
-        this.checked = false;
-        this.points --; 
-        console.log("You have " + this.points + " points remaining.");
-    }
-  };
+  this.guess = function(userGuess) {
 
+    for (var i = 0; i < this.newWord.length; ++i)
+      {
+      //(this.newWord[i].guess(userGuess)===) {
+      console.log("My userGuess ===============" + this.newWord[i].guess(userGuess));
+      }
+    
+  };
+  
 };
 
+//=====CHECKING FILE WORD===========
+//var superWord = new Word("Jenniferl");
+//superWord.guess();
+//console.log(superWord);
+
 module.exports = Word;
+
+
+
+
   
 
 
