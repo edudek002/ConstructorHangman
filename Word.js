@@ -1,26 +1,51 @@
-var inquirer = require("inquirer");
+// requiring Letter module exported from student.js
+var Letter = require("./Letter.js");
 
-var ALPHABET = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+//selectedWord = "jenniferl";
 
-// dependency for inquirer npm package
-var inquirer = require("inquirer");
-
-// constructor function used to create programmers objects
-function Letter(userGuess, lettersGuess, correctLetter, wrongLetters, dashes, selectedWord) {
+// constructor function for creating Word objects
+var Word = function(selectedWord) {
+  // this.students will hold all of our student objects
+  this.Letters = [];
   
-  this.userGuess = userGuess
-  this.lettersGuess = lettersGuess;//array of correct guesses
-  this.correctLetter = correctLetter;// array of correct guesses for display purpose (no repeat letters)
-  this.wrongLetters = wrongLetters;//array of incorrect guesses
-  this.dashes = [];                 // display of the word
   this.selectedWord=selectedWord;
-}
+  console.log("My selectedWord  " + this.selectedWord);
+  this.points = 15;
+  
+  // a method that creates a Word using Letter constructor.
+  
+  this.addLetter = function(userGuess, underlying, checked, dashes) {
+    this.Letters.push(new Letter(userGuess, underlying, checked, dashes));
+    
+  };
 
-// creates the printInfo method and applies it to all programmer objects
-Letter.prototype.printInfo = function() {
-  console.log("Letter: " + this.userGuess);
+  console.log("My userGuess  " +   " How to console.log letter guessed?");
+  console.log("==========End of Word constructor ================");
+  console.log();
+  
+  this.isCorrect = function(userGuess) {
+    if (this.Letters.userGuess===this.Letters.underlying) {
+      console.log("My userGuess " + this.userGuess)
+      console.log("CORRECT!");
+      this.checked = true;
+      this.points --; 
+        console.log("You have " + this.points + " points remaining.");
+    }
+    else {
+        console.log("WRONG");
+        this.checked = false;
+        this.points --; 
+        console.log("You have " + this.points + " points remaining.");
+    }
+  };
+
 };
 
+module.exports = Word;
+  
+
+
+/*
 Letter.prototype.setWord = function() {
   var word = "jenniferl";
   this.selectedWord = word.split('');
@@ -28,6 +53,8 @@ Letter.prototype.setWord = function() {
   this.selectedWord.forEach(function(letter) {
     self.dashes.push('-');
   });
+}
+  */
   /*
   this.selectedWord.forEach(function (letter, i) {
     if (thisuserGuess === letter) {
@@ -35,7 +62,7 @@ Letter.prototype.setWord = function() {
     }
   });
   */
-}
+
 /*
 
 var constructWord = function(completeObject){
@@ -48,6 +75,8 @@ console.log(completeObject.WORD);
 */
 
 // variable we will use to count how many times our questions have been asked
+/*
+
 var count = 0;
 
 var askQuestion = function() {
@@ -137,4 +166,4 @@ askQuestion();
  * Sets selectedWord to a random word.
  */
 
-//module.exports = Letter;
+
