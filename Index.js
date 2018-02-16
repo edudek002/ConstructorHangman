@@ -33,7 +33,7 @@ inquirer.prompt([
 
 // calling the addStudent method on our firstClass object
 
-firstWord.guess(ALPHABET[4]);
+firstWord.guess("e");
 
 
 console.log(firstWord);

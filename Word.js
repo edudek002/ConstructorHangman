@@ -22,17 +22,19 @@ var Word = function(selectedWord) {
 
   console.log("My selectedWord  " + this.selectedWord);
   
-  
   console.log();
+
+  console.log("My newWord  " + this.newWord);
   
   this.guess = function(userGuess) {
 
     for (var i = 0; i < this.newWord.length; ++i)
       {
       //(this.newWord[i].guess(userGuess)===) {
-      console.log("My userGuess ===============" + this.newWord[i].guess(userGuess));
+      this.newWord[i].guess(userGuess);
+      console.log("My matching userGuess  " + this.newWord[i] + "  ");
       }
-    
+    console.log('After for loop, newWord is: ' + this.newWord);
   };
   
 };
