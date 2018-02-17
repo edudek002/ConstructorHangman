@@ -1,41 +1,53 @@
-// requiring our Classroom module exported from classroom.js
+// requiring Word.js and GetSinger.js exported
 var inquirer = require("inquirer");
-
-var ALPHABET = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-//underlying = ALPHABET[3];
-
 var Word = require("./Word.js");
+var GetSinger = require("./GetSinger.js");
 
-// creating and storing a new classroom object
-var firstWord = new Word("Jenniferl");
-/*
+var nextWord = new Word(GetSinger.singer);
 
-inquirer.prompt([  
-  {
-    name: "userGuess",
-    message: "Name a letter"
-  }
+function playerGuess() {
+    
+    inquirer.prompt([{
+        name: "lit",
+        type: "text",
+        message: "Pick a letter",
+    }]).then(function(answer) {
+        console.log("===============================");
+        var lit = answer.lit;
+        nextWord.guess(lit);   
+        if (nextWord.points === 0) {
+            console.log("You lost! The answer is:  "  + GetSinger.singer.toUpperCase());
+            console.log();
+            playAgain();
+        } else {
+            console.log("Try another letter!");
+            console.log();
+            playerGuess();
+        }   
+    });
+}
 
-	]).then(function(answers) {
-	  // initializes the variable newLetter to be a letter object which will take
-	  // in all of the user's answers to the questions above
-	  var userGuess;
-	  //var newLetter = new Letter(answers.userGuess.toString()
-	  console.log(userGuess + " Hurray");
-	  //console.log("Checking: " + newLetter.userGuess);
-	  //newLetter.printInfo();
-	});
+function playAgain() {
+    inquirer.prompt([{
+        type: "input",
+        message: "Would you like to play again?",
+        name: "playAgain"
+    }]).then(function(answer) {
+        var answer = answer.playAgain;
+        if (answer === "y"||answer === "Y"||answer === "yes"||answer === "YES") {
+            nextWord = new Word(GetSinger.singer);
+            playerGuess();    
+        } else if (answer === "n" || answer === "no" || answer === "N" || answer === "NO") {
+            console.log("Thanks for playing!");
+            return;
+        }
+    })
+}                
 
-*/
-  	//isCorrect(newLetter);
-  	//newLetter.checkIfGuessed();  
+playerGuess();
+
+//console.log("My Index singer " + GetSinger.singer);
 
 
-// calling the addStudent method on our firstClass object
-
-firstWord.guess("e");
-
-
-console.log(firstWord);
 
 
